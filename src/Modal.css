@@ -1,4 +1,10 @@
 
+.modalWrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .modal{
     width: 33.75rem;
     min-height: 29rem;

@@ -19,16 +19,19 @@ function Modal({
   timer,
   setTimer,
   handleMode,
+  setTimeLeft,
+  pomodoro_setting,
+  sb_setting,
+  lb_setting,
+  setpomodorosetting,
+  setSBsetting,
+  setLBsetting,
 }) {
-  const [pomodoro_setting, setpomodorosetting] = useState(25);
-  const [sb_setting, setSBsetting] = useState(5);
-  const [lb_setting, setLBsetting] = useState(15);
-
   const handlePomoUp = () => {
     setpomodorosetting(pomodoro_setting + 1);
   };
   const handlePomoDown = () => {
-    if (pomodoro_setting === 0) {
+    if (pomodoro_setting === 1) {
       return;
     }
     setpomodorosetting(pomodoro_setting - 1);
@@ -37,7 +40,7 @@ function Modal({
     setSBsetting(sb_setting + 1);
   };
   const handlesbDown = () => {
-    if (sb_setting === 0) {
+    if (sb_setting === 1) {
       return;
     }
     setSBsetting(sb_setting - 1);
@@ -46,7 +49,7 @@ function Modal({
     setLBsetting(lb_setting + 1);
   };
   const handlelbDown = () => {
-    if (lb_setting === 0) {
+    if (lb_setting === 1) {
       return;
     }
     setLBsetting(lb_setting - 1);
@@ -55,11 +58,20 @@ function Modal({
     setShowModal(false);
   };
   const handleSubmit = () => {
-    setPomodoro(pomodoro_setting * 60);
-    setSB(sb_setting * 60);
-    setLB(lb_setting * 60);
+    const new_pomodoro = pomodoro_setting * 60;
+    const new_sb = sb_setting * 60;
+    const new_lb = lb_setting * 60;
+    setPomodoro(new_pomodoro);
+    setSB(new_sb);
+    setLB(new_lb);
     setShowModal(false);
-    handleMode(currMode);
+    if (currMode == "pomodoro") {
+      setTimeLeft(new_pomodoro);
+    } else if (currMode === "sb") {
+      setTimeLeft(new_sb);
+    } else {
+      setTimeLeft(new_lb);
+    }
   };
 
   return (

@@ -14,17 +14,30 @@ function App() {
   const [selectedFont, setSelectedFont] = useState(1);
   const [selectedColor, setSelectedColor] = useState(1);
 
+  const [pomodoro_setting, setpomodorosetting] = useState(25);
+  const [sb_setting, setSBsetting] = useState(5);
+  const [lb_setting, setLBsetting] = useState(15);
+
   const handleMode = (break_type) => {
+    // sets current mode
     setCurrMode(break_type);
+    // turns off timer so changing mode stops the clock
     setTimer("off");
+    console.log("break_type: ", break_type);
+    // different conditional statements
+    // to calculate time left based on current mode
     if (break_type === "pomodoro") {
+      console.log("pomodoro condition triggered");
       setTimeLeft(pomodoro);
     } else if (break_type === "sb") {
+      console.log("sb condition triggered");
       setTimeLeft(sb);
     } else {
+      console.log("lb condition triggered");
       setTimeLeft(lb);
     }
   };
+
   const handleTimer = () => {
     if (timer === "off") {
       setTimer("on");
@@ -45,7 +58,8 @@ function App() {
 
   useEffect(() => {
     //Only set the interval if timeLeft is > 0
-    if (timeLeft > 0 && timer == "on") {
+    // if timer is on we decrement the clock
+    if (timeLeft > 0 && timer === "on") {
       const timerId = setInterval(() => {
         setTimeLeft(timeLeft - 1); // Decrement time left by 1s
       }, 1000);
@@ -116,7 +130,9 @@ function App() {
       <div className="widget">
         <div
           className="progress"
-          style={{ borderColor: colorMapping[selectedColor] }}
+          style={{
+            borderColor: colorMapping[selectedColor],
+          }}
         >
           <div className="progress_text">
             <div className="time">
@@ -160,6 +176,7 @@ function App() {
           setSelectedFont={setSelectedFont}
           setSelectedColor={setSelectedColor}
           timeLeft={timeLeft}
+          setTimeLeft={setTimeLeft}
           currMode={currMode}
           setCurrMode={setCurrMode}
           showModal={showModal}
@@ -167,6 +184,12 @@ function App() {
           timer={timer}
           setTimer={setTimer}
           handleMode={handleMode}
+          pomodoro_setting={pomodoro_setting}
+          sb_setting={sb_setting}
+          lb_setting={lb_setting}
+          setpomodorosetting={setpomodorosetting}
+          setSBsetting={setSBsetting}
+          setLBsetting={setLBsetting}
         />
       )}
     </div>

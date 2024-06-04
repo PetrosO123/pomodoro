@@ -16,40 +16,50 @@ function Modal({
   setShowModal,
   currMode,
   setCurrMode,
+  timer,
+  setTimer,
+  handleMode,
 }) {
   const [pomodoro_setting, setpomodorosetting] = useState(25);
   const [sb_setting, setSBsetting] = useState(5);
   const [lb_setting, setLBsetting] = useState(15);
 
   const handlePomoUp = () => {
-    setPomodoro(pomodoro + 1);
+    setpomodorosetting(pomodoro_setting + 1);
   };
   const handlePomoDown = () => {
-    if (pomodoro === 0) {
+    if (pomodoro_setting === 0) {
       return;
     }
-    setPomodoro(pomodoro - 1);
+    setpomodorosetting(pomodoro_setting - 1);
   };
   const handlesbUp = () => {
-    setSB(sb + 1);
+    setSBsetting(sb_setting + 1);
   };
   const handlesbDown = () => {
-    if (sb === 0) {
+    if (sb_setting === 0) {
       return;
     }
-    setSB(sb - 1);
+    setSBsetting(sb_setting - 1);
   };
   const handlelbUp = () => {
-    setLB(lb + 1);
+    setLBsetting(lb_setting + 1);
   };
   const handlelbDown = () => {
-    if (lb === 0) {
+    if (lb_setting === 0) {
       return;
     }
-    setLB(lb - 1);
+    setLBsetting(lb_setting - 1);
   };
   const handleClose = () => {
     setShowModal(false);
+  };
+  const handleSubmit = () => {
+    setPomodoro(pomodoro_setting * 60);
+    setSB(sb_setting * 60);
+    setLB(lb_setting * 60);
+    setShowModal(false);
+    handleMode(currMode);
   };
 
   return (
@@ -57,12 +67,7 @@ function Modal({
       <div className="modal">
         <header>
           <div className="settings">Settings</div>
-          <div
-            className="close"
-            onClick={() => {
-              setShowModal(false);
-            }}
-          >
+          <div className="close" onClick={handleClose}>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14">
               <path
                 fill="#1E213F"
@@ -225,7 +230,9 @@ function Modal({
           </div>
         </div>
 
-        <div className="apply">Apply</div>
+        <div className="apply" onClick={handleSubmit}>
+          Apply
+        </div>
       </div>
     </div>
   );

@@ -8,14 +8,22 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
-  const [pomodoro, setPomodoro] = useState(25);
-  const [sb, setSB] = useState(5);
-  const [lb, setLB] = useState(15);
+  const [pomodoro, setPomodoro] = useState(25 * 60);
+  const [sb, setSB] = useState(5 * 60);
+  const [lb, setLB] = useState(15 * 60);
   const [selectedFont, setSelectedFont] = useState(1);
   const [selectedColor, setSelectedColor] = useState(1);
 
   const handleMode = (break_type) => {
     setCurrMode(break_type);
+    setTimer("off");
+    if (break_type === "pomodoro") {
+      setTimeLeft(pomodoro);
+    } else if (break_type === "sb") {
+      setTimeLeft(sb);
+    } else {
+      setTimeLeft(lb);
+    }
   };
   const handleTimer = () => {
     if (timer === "off") {
@@ -119,6 +127,9 @@ function App() {
           setCurrMode={setCurrMode}
           showModal={showModal}
           setShowModal={setShowModal}
+          timer={timer}
+          setTimer={setTimer}
+          handleMode={handleMode}
         />
       )}
     </div>

@@ -37,6 +37,12 @@ function App() {
     }
   };
 
+  const colorMapping = {
+    1: "#F87070",
+    2: "#D7E0FF",
+    3: "#D881F8",
+  };
+
   useEffect(() => {
     //Only set the interval if timeLeft is > 0
     if (timeLeft > 0 && timer == "on") {
@@ -48,6 +54,19 @@ function App() {
       return () => clearInterval(timerId);
     }
   }, [timeLeft, timer]);
+
+  useEffect(() => {
+    if (selectedFont === 1) {
+      document.body.style.fontFamily = "Kumbh Sans, sans-serif";
+    } else if (selectedFont === 2) {
+      document.body.style.fontFamily = "Roboto Slab, serif";
+    } else {
+      document.body.style.fontFamily = "Space Mono, monospace";
+    }
+    return () => {
+      document.body.style.fontFamily = "Kumbh Sans, sans-serif";
+    };
+  }, [selectedFont]);
 
   return (
     <div className="wrapper">
@@ -63,24 +82,42 @@ function App() {
         <div
           className={`tab_pomodoro ${currMode === "pomodoro" ? "active" : ""}`}
           onClick={() => handleMode("pomodoro")}
+          style={{
+            backgroundColor:
+              currMode === "pomodoro" ? colorMapping[selectedColor] : "",
+            color: currMode === "pomodoro" ? "black" : "",
+          }}
         >
           pomodoro
         </div>
         <div
           className={`tab_sb ${currMode === "sb" ? "active" : ""}`}
           onClick={() => handleMode("sb")}
+          style={{
+            backgroundColor:
+              currMode === "sb" ? colorMapping[selectedColor] : "",
+            color: currMode === "sb" ? "black" : "",
+          }}
         >
           short break
         </div>
         <div
           className={`tab_lb ${currMode === "lb" ? "active" : ""}`}
           onClick={() => handleMode("lb")}
+          style={{
+            backgroundColor:
+              currMode === "lb" ? colorMapping[selectedColor] : "",
+            color: currMode === "lb" ? "black" : "",
+          }}
         >
           long break
         </div>
       </div>
       <div className="widget">
-        <div className="progress">
+        <div
+          className="progress"
+          style={{ borderColor: colorMapping[selectedColor] }}
+        >
           <div className="progress_text">
             <div className="time">
               {`${Math.floor(timeLeft / 60)

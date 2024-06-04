@@ -40,7 +40,7 @@ body{
   transition: all 0.3s ease-in-out;
 }
 .active{
-  background-color: #F87070;
+  /* background-color: #F87070; */
 }
 .widget{
   /* width: 23.125rem;

@@ -43,14 +43,13 @@ body{
   /* background-color: #F87070; */
 }
 .widget{
-  /* width: 23.125rem;
-  height: 25.625rem; */
-  border: 24px solid white;
-  border-radius: 50%;
+  border-radius:50%;
+  box-shadow: 0 0 0 30px #1E213F;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #161932;
+
 }
 .progress{
   width: 21.25rem;
@@ -62,6 +61,8 @@ body{
   align-items: center;
   margin: 2rem;
   background-color: #161932;
+
+  
 }
 .progress_text{
   /* background-color: yellow; */

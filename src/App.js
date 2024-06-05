@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Modal from "./Modal";
+import Progress from "./Progress";
 
 function App() {
   const [currMode, setCurrMode] = useState("pomodoro");
@@ -193,6 +194,7 @@ function App() {
         />
       )}
     </div>
+    // <Progress />
   );
 }
 

@@ -42,6 +42,9 @@ body{
 .active{
   /* background-color: #F87070; */
 }
+.widget_wrapper{
+  position: relative;
+}
 .widget{
   border-radius:50%;
   box-shadow: 0 0 0 30px #1E213F;
@@ -54,7 +57,7 @@ body{
 .progress{
   width: 21.25rem;
   height: 21.25rem;
-  border: 16px solid #F87070;
+  /* border: 16px solid #F87070; */
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -68,6 +71,7 @@ body{
   /* background-color: yellow; */
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 .pause{
   /* background-color: green; */

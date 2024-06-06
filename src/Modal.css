@@ -4,6 +4,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: #14141496;
+    display: grid;
+    place-content: center;
 }
 .modal{
     width: 33.75rem;
@@ -110,32 +116,31 @@
 
 .fuschia::before, .teal::before, .purple::before {
     content: '';
-    display: none; /* initially hidden */
-    width: 5px; /* width of check mark */
-    height: 15px; /* height of check mark */
+    display: none; 
+    width: 5px; /*  check mark width */
+    height: 15px; /* check mark height */
     border-right: 2.5px solid black; /* color and size of right border */
     border-bottom: 2.5px solid black; /* color and size of bottom border */
     transform: translate(-50%, -50%) rotate(45deg); /* position and angle */
     position: absolute;
-    top: 50%; /* centering the check mark */
-    left: 50%; /* centering the check mark */
+    top: 50%; /* centers the check mark */
+    left: 50%; /* centers the check mark */
 }
 
 .fuschia.selected::before, .teal.selected::before, .purple.selected::before {
-    display: block; /* make the check mark visible when selected */
+    display: block; /* makes the check mark visible when selected */
 }
 
-/* Styling for each color */
 .fuschia {
-    background-color: #F87070; /* background color */
+    background-color: #F87070;
 }
 
 .teal {
-    background-color: #70F3F8; /* background color */
+    background-color: #70F3F8;
 }
 
 .purple {
-    background-color: #D881F8; /* background color */
+    background-color: #D881F8;
 }
 
   
@@ -197,7 +202,6 @@
     display: flex;
     flex-direction: column;
     padding-right: 1rem;
-    /* gap: 0.5rem; */
   }
   .up, .down{
     cursor: pointer;

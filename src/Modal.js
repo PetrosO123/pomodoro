@@ -26,6 +26,8 @@ function Modal({
   setpomodorosetting,
   setSBsetting,
   setLBsetting,
+  totalSeconds,
+  setTotalSeconds,
 }) {
   const handlePomoUp = () => {
     setpomodorosetting(pomodoro_setting + 1);
@@ -67,10 +69,13 @@ function Modal({
     setShowModal(false);
     if (currMode == "pomodoro") {
       setTimeLeft(new_pomodoro);
+      setTotalSeconds(new_pomodoro);
     } else if (currMode === "sb") {
       setTimeLeft(new_sb);
+      setTotalSeconds(new_sb);
     } else {
       setTimeLeft(new_lb);
+      setTotalSeconds(new_lb);
     }
   };
 

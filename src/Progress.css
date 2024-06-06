@@ -1,7 +1,7 @@
 .circular-progress {
     --size: 250px;
     --half-size: calc(var(--size) / 2);
-    --stroke-width: 20px;
+    --stroke-width: 10px;
     --radius: calc((var(--size) - var(--stroke-width)) / 2);
     --circumference: calc(var(--radius) * 2 * 3.141592653589793); 
     --dash: calc((var(--progress) * var(--circumference)) / 100);
@@ -21,4 +21,11 @@
     transform-origin: var(--half-size) var(--half-size);
     stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
     stroke: #5394fd;
+}
+.circular_bar{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    z-index: 0;
 }

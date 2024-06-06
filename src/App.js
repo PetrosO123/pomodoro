@@ -19,6 +19,9 @@ function App() {
   const [sb_setting, setSBsetting] = useState(5);
   const [lb_setting, setLBsetting] = useState(15);
 
+  const [totalSeconds, setTotalSeconds] = useState(0);
+  const [progress, setProgress] = useState(0);
+
   const handleMode = (break_type) => {
     // sets current mode
     setCurrMode(break_type);
@@ -30,14 +33,24 @@ function App() {
     if (break_type === "pomodoro") {
       console.log("pomodoro condition triggered");
       setTimeLeft(pomodoro);
+      setTotalSeconds(pomodoro);
+      setProgress(100);
     } else if (break_type === "sb") {
       console.log("sb condition triggered");
       setTimeLeft(sb);
+      setTotalSeconds(sb);
+      setProgress(100);
     } else {
       console.log("lb condition triggered");
       setTimeLeft(lb);
+      setTotalSeconds(lb);
+      setProgress(100);
     }
   };
+
+  useEffect(() => {
+    console.log("timer is now: ", timer);
+  }, [timer]); // This useEffect will run every time 'timer' changes.
 
   const handleTimer = () => {
     if (timer === "off") {
@@ -45,6 +58,8 @@ function App() {
       if (timeLeft === 0) {
         let seconds = 1600;
         setTimeLeft(seconds);
+        setTotalSeconds(seconds);
+        setProgress(100);
       }
     } else {
       setTimer("off");
@@ -128,33 +143,43 @@ function App() {
           long break
         </div>
       </div>
-      <div className="widget">
-        <div
-          className="progress"
-          style={{
-            borderColor: colorMapping[selectedColor],
-          }}
-        >
-          <div className="progress_text">
-            <div className="time">
-              {`${Math.floor(timeLeft / 60)
-                .toString()
-                .padStart(2, "0")}:${(timeLeft % 60)
-                .toString()
-                .padStart(2, "0")}`}
-            </div>
+      <div className="widget_wrapper">
+        <div className="widget">
+          <div
+            className="progress"
+            style={{
+              borderColor: colorMapping[selectedColor],
+            }}
+          >
+            <div className="progress_text">
+              <div className="time">
+                {`${Math.floor(timeLeft / 60)
+                  .toString()
+                  .padStart(2, "0")}:${(timeLeft % 60)
+                  .toString()
+                  .padStart(2, "0")}`}
+              </div>
 
-            <div className="pause" onClick={handleTimer}>
-              {timer === "off" && timeLeft === 0
-                ? "RESTART"
-                : timer === "on"
-                ? "PAUSE"
-                : "PLAY"}
-              {/* last condition is if timer is off and time left > 0 */}
+              <div className="pause" onClick={handleTimer}>
+                {timer === "off" && timeLeft === 0
+                  ? "RESTART"
+                  : timer === "on"
+                  ? "PAUSE"
+                  : "PLAY"}
+                {/* last condition is if timer is off and time left > 0 */}
+              </div>
             </div>
           </div>
         </div>
+        <Progress
+          totalSeconds={totalSeconds}
+          timeLeft={timeLeft}
+          progress={progress}
+          setProgress={setProgress}
+          timer={timer}
+        />
       </div>
+
       <div className="gears" onClick={() => setShowModal(!showModal)}>
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
           <path
@@ -191,10 +216,11 @@ function App() {
           setpomodorosetting={setpomodorosetting}
           setSBsetting={setSBsetting}
           setLBsetting={setLBsetting}
+          totalSeconds={totalSeconds}
+          setTotalSeconds={setTotalSeconds}
         />
       )}
     </div>
-    // <Progress />
   );
 }
 

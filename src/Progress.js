@@ -1,31 +1,36 @@
 import "./Progress.css";
 import React, { useState, useEffect } from "react";
 
-function Progress() {
-  const [progress, setProgress] = useState(100); // Start from 100%
+function Progress({ timeLeft, totalSeconds, progress, setProgress, timer }) {
+  // Start from 100%
 
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
-        if (prevProgress > 0) {
-          return prevProgress - 0.05; // Correctly decrement the progress
+        if (timeLeft > 0 && totalSeconds > 0 && timer == "on") {
+          const newProgress = 100 * (timeLeft / totalSeconds);
+          console.log("Updated Progress: ", newProgress);
+          console.log("timer: ", timer);
+          return newProgress;
+        } else if (timeLeft === 0 && timer == "off") {
+          clearInterval(interval); //clears interval when timeLeft is 0
+          return 0;
         }
-        clearInterval(interval); // Clear interval when progress is 0
-        return 0;
+        return prevProgress; //keeps current progress if no conditions met
       });
-    }, 5); // Updates every second
+    }, 1000); //updates every second to reflect each decrement in timeLeft
 
-    return () => clearInterval(interval); // Clean up the interval on component unmount
-  }, []);
+    return () => clearInterval(interval); //cleans up the interval on component unmount
+  }, [timeLeft, totalSeconds, timer]); //includes timeLeft and totalSeconds in the array of dependencies dependencies
 
   return (
-    <div className="hello">
+    <div className="circular_bar">
       <svg
-        width="250"
-        height="250"
+        width="350"
+        height="350"
         viewBox="0 0 250 250"
         className="circular-progress"
-        style={{ "--progress": progress }} // Dynamically update progress
+        style={{ "--progress": progress }} //dynamically updates progress
       >
         <circle className="bg"></circle>
         <circle className="fg"></circle>

@@ -20,7 +20,7 @@
     transform: rotate(-90deg);
     transform-origin: var(--half-size) var(--half-size);
     stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
-    stroke: #5394fd;
+    /* stroke: #5394fd; */
 }
 .circular_bar{
     position: absolute;

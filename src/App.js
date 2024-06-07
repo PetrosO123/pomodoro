@@ -12,6 +12,8 @@ function App() {
   const [pomodoro, setPomodoro] = useState(25 * 60);
   const [sb, setSB] = useState(5 * 60);
   const [lb, setLB] = useState(15 * 60);
+  const [font, setFont] = useState(1);
+  const [color, setColor] = useState(1);
   const [selectedFont, setSelectedFont] = useState(1);
   const [selectedColor, setSelectedColor] = useState(1);
 
@@ -21,6 +23,12 @@ function App() {
 
   const [totalSeconds, setTotalSeconds] = useState(0);
   const [progress, setProgress] = useState(0);
+
+  const colorMapping = {
+    1: "#F87070",
+    2: "#D7E0FF",
+    3: "#D881F8",
+  };
 
   const handleMode = (break_type) => {
     // sets current mode
@@ -66,12 +74,6 @@ function App() {
     }
   };
 
-  const colorMapping = {
-    1: "#F87070",
-    2: "#D7E0FF",
-    3: "#D881F8",
-  };
-
   useEffect(() => {
     //Only set the interval if timeLeft is > 0
     // if timer is on we decrement the clock
@@ -86,7 +88,7 @@ function App() {
   }, [timeLeft, timer]);
 
   useEffect(() => {
-    if (selectedFont === 1) {
+    if (font === 1) {
       document.body.style.fontFamily = "Kumbh Sans, sans-serif";
     } else if (selectedFont === 2) {
       document.body.style.fontFamily = "Roboto Slab, serif";
@@ -96,7 +98,7 @@ function App() {
     return () => {
       document.body.style.fontFamily = "Kumbh Sans, sans-serif";
     };
-  }, [selectedFont]);
+  }, [font]);
 
   return (
     <div className="wrapper">
@@ -113,8 +115,7 @@ function App() {
           className={`tab_pomodoro ${currMode === "pomodoro" ? "active" : ""}`}
           onClick={() => handleMode("pomodoro")}
           style={{
-            backgroundColor:
-              currMode === "pomodoro" ? colorMapping[selectedColor] : "",
+            backgroundColor: currMode === "pomodoro" ? colorMapping[color] : "",
             color: currMode === "pomodoro" ? "black" : "",
           }}
         >
@@ -124,8 +125,7 @@ function App() {
           className={`tab_sb ${currMode === "sb" ? "active" : ""}`}
           onClick={() => handleMode("sb")}
           style={{
-            backgroundColor:
-              currMode === "sb" ? colorMapping[selectedColor] : "",
+            backgroundColor: currMode === "sb" ? colorMapping[color] : "",
             color: currMode === "sb" ? "black" : "",
           }}
         >
@@ -135,8 +135,7 @@ function App() {
           className={`tab_lb ${currMode === "lb" ? "active" : ""}`}
           onClick={() => handleMode("lb")}
           style={{
-            backgroundColor:
-              currMode === "lb" ? colorMapping[selectedColor] : "",
+            backgroundColor: currMode === "lb" ? colorMapping[color] : "",
             color: currMode === "lb" ? "black" : "",
           }}
         >
@@ -145,12 +144,7 @@ function App() {
       </div>
       <div className="widget_wrapper">
         <div className="widget">
-          <div
-            className="progress"
-            style={{
-              borderColor: colorMapping[selectedColor],
-            }}
-          >
+          <div className="progress">
             <div className="progress_text">
               <div className="time">
                 {`${Math.floor(timeLeft / 60)
@@ -177,6 +171,7 @@ function App() {
           progress={progress}
           setProgress={setProgress}
           timer={timer}
+          color={color}
         />
       </div>
 
@@ -218,6 +213,10 @@ function App() {
           setLBsetting={setLBsetting}
           totalSeconds={totalSeconds}
           setTotalSeconds={setTotalSeconds}
+          font={font}
+          setFont={setFont}
+          color={color}
+          setColor={setColor}
         />
       )}
     </div>

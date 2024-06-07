@@ -1,9 +1,20 @@
 import "./Progress.css";
 import React, { useState, useEffect } from "react";
 
-function Progress({ timeLeft, totalSeconds, progress, setProgress, timer }) {
+function Progress({
+  timeLeft,
+  totalSeconds,
+  progress,
+  setProgress,
+  timer,
+  color,
+}) {
+  const colorMapping = {
+    1: "#F87070",
+    2: "#D7E0FF",
+    3: "#D881F8",
+  };
   // Start from 100%
-
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -30,7 +41,7 @@ function Progress({ timeLeft, totalSeconds, progress, setProgress, timer }) {
         height="350"
         viewBox="0 0 250 250"
         className="circular-progress"
-        style={{ "--progress": progress }} //dynamically updates progress
+        style={{ "--progress": progress, stroke: colorMapping[color] }} //dynamically updates progress
       >
         <circle className="bg"></circle>
         <circle className="fg"></circle>

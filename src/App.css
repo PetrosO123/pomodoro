@@ -57,7 +57,6 @@ body{
 .progress{
   width: 21.25rem;
   height: 21.25rem;
-  /* border: 16px solid #F87070; */
   border-radius: 50%;
   display: flex;
   justify-content: center;

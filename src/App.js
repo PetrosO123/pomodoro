@@ -12,6 +12,8 @@ function App() {
   const [pomodoro, setPomodoro] = useState(25 * 60);
   const [sb, setSB] = useState(5 * 60);
   const [lb, setLB] = useState(15 * 60);
+  const [font, setFont] = useState(1);
+  const [color, setColor] = useState(1);
   const [selectedFont, setSelectedFont] = useState(1);
   const [selectedColor, setSelectedColor] = useState(1);
 
@@ -24,6 +26,12 @@ function App() {
 
   const [totalSeconds, setTotalSeconds] = useState(0);
   const [progress, setProgress] = useState(0);
+
+  const colorMapping = {
+    1: "#F87070",
+    2: "#D7E0FF",
+    3: "#D881F8",
+  };
 
   const handleMode = (break_type) => {
     // sets current mode
@@ -67,12 +75,6 @@ function App() {
     } else {
       setTimer("off");
     }
-  };
-
-  const colorMapping = {
-    1: "#F87070",
-    2: "#D7E0FF",
-    3: "#D881F8",
   };
 
   useEffect(() => {
@@ -145,12 +147,7 @@ function App() {
       </div>
       <div className="widget_wrapper">
         <div className="widget">
-          <div
-            className="progress"
-            style={{
-              borderColor: colorMapping[color],
-            }}
-          >
+          <div className="progress">
             <div className="progress_text">
               <div
                 className="time"

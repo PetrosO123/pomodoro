@@ -28,7 +28,9 @@ function Modal({
   setLBsetting,
   totalSeconds,
   setTotalSeconds,
+  color,
   setColor,
+  font,
   setFont,
 }) {
   const handlePomoUp = () => {
@@ -74,12 +76,18 @@ function Modal({
     if (currMode == "pomodoro") {
       setTimeLeft(new_pomodoro);
       setTotalSeconds(new_pomodoro);
+      setFont(selectedFont);
+      setColor(selectedColor);
     } else if (currMode === "sb") {
       setTimeLeft(new_sb);
       setTotalSeconds(new_sb);
+      setFont(selectedFont);
+      setColor(selectedColor);
     } else {
       setTimeLeft(new_lb);
       setTotalSeconds(new_lb);
+      setFont(selectedFont);
+      setColor(selectedColor);
     }
   };
 

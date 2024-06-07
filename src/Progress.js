@@ -41,7 +41,7 @@ function Progress({
         height="350"
         viewBox="0 0 250 250"
         className="circular-progress"
-        style={{ "--progress": progress }} //dynamically updates progress
+        style={{ "--progress": progress, stroke: colorMapping[color] }} //dynamically updates progress
       >
         <circle className="bg"></circle>
         <circle className="fg" style={{ stroke: colorMapping[color] }}></circle>

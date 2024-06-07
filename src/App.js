@@ -17,9 +17,6 @@ function App() {
   const [selectedFont, setSelectedFont] = useState(1);
   const [selectedColor, setSelectedColor] = useState(1);
 
-  const [color, setColor] = useState(1);
-  const [font, setFont] = useState(1);
-
   const [pomodoro_setting, setpomodorosetting] = useState(25);
   const [sb_setting, setSBsetting] = useState(5);
   const [lb_setting, setLBsetting] = useState(15);

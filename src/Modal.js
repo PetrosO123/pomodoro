@@ -71,6 +71,8 @@ function Modal({
     setSB(new_sb);
     setLB(new_lb);
     setShowModal(false);
+    setColor(selectedColor);
+    setFont(selectedFont);
     if (currMode == "pomodoro") {
       setTimeLeft(new_pomodoro);
       setTotalSeconds(new_pomodoro);

@@ -17,6 +17,9 @@ function App() {
   const [selectedFont, setSelectedFont] = useState(1);
   const [selectedColor, setSelectedColor] = useState(1);
 
+  const [color, setColor] = useState(1);
+  const [font, setFont] = useState(1);
+
   const [pomodoro_setting, setpomodorosetting] = useState(25);
   const [sb_setting, setSBsetting] = useState(5);
   const [lb_setting, setLBsetting] = useState(15);
@@ -90,7 +93,7 @@ function App() {
   useEffect(() => {
     if (font === 1) {
       document.body.style.fontFamily = "Kumbh Sans, sans-serif";
-    } else if (selectedFont === 2) {
+    } else if (font === 2) {
       document.body.style.fontFamily = "Roboto Slab, serif";
     } else {
       document.body.style.fontFamily = "Space Mono, monospace";
@@ -146,7 +149,10 @@ function App() {
         <div className="widget">
           <div className="progress">
             <div className="progress_text">
-              <div className="time">
+              <div
+                className="time"
+                style={font === 3 ? { fontWeight: 400 } : { fontWeight: 700 }}
+              >
                 {`${Math.floor(timeLeft / 60)
                   .toString()
                   .padStart(2, "0")}:${(timeLeft % 60)
@@ -213,10 +219,10 @@ function App() {
           setLBsetting={setLBsetting}
           totalSeconds={totalSeconds}
           setTotalSeconds={setTotalSeconds}
-          font={font}
-          setFont={setFont}
           color={color}
           setColor={setColor}
+          font={font}
+          setFont={setFont}
         />
       )}
     </div>

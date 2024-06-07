@@ -9,12 +9,12 @@ function Progress({
   timer,
   color,
 }) {
+  // Start from 100%
   const colorMapping = {
     1: "#F87070",
     2: "#D7E0FF",
     3: "#D881F8",
   };
-  // Start from 100%
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -27,12 +27,12 @@ function Progress({
           clearInterval(interval); //clears interval when timeLeft is 0
           return 0;
         }
-        return prevProgress; //keeps current progress if no conditions met
+        return prevProgress; //keeps current progress if neither condition's met
       });
     }, 1000); //updates every second to reflect each decrement in timeLeft
 
     return () => clearInterval(interval); //cleans up the interval on component unmount
-  }, [timeLeft, totalSeconds, timer]); //includes timeLeft and totalSeconds in the array of dependencies dependencies
+  }, [timeLeft, totalSeconds, timer]); //includes timeLeft and totalSeconds in the array of dependencies
 
   return (
     <div className="circular_bar">
@@ -44,7 +44,7 @@ function Progress({
         style={{ "--progress": progress, stroke: colorMapping[color] }} //dynamically updates progress
       >
         <circle className="bg"></circle>
-        <circle className="fg"></circle>
+        <circle className="fg" style={{ stroke: colorMapping[color] }}></circle>
       </svg>
     </div>
   );

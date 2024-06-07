@@ -15,6 +15,9 @@ function App() {
   const [selectedFont, setSelectedFont] = useState(1);
   const [selectedColor, setSelectedColor] = useState(1);
 
+  const [color, setColor] = useState(1);
+  const [font, setFont] = useState(1);
+
   const [pomodoro_setting, setpomodorosetting] = useState(25);
   const [sb_setting, setSBsetting] = useState(5);
   const [lb_setting, setLBsetting] = useState(15);
@@ -86,9 +89,9 @@ function App() {
   }, [timeLeft, timer]);
 
   useEffect(() => {
-    if (selectedFont === 1) {
+    if (font === 1) {
       document.body.style.fontFamily = "Kumbh Sans, sans-serif";
-    } else if (selectedFont === 2) {
+    } else if (font === 2) {
       document.body.style.fontFamily = "Roboto Slab, serif";
     } else {
       document.body.style.fontFamily = "Space Mono, monospace";
@@ -96,7 +99,7 @@ function App() {
     return () => {
       document.body.style.fontFamily = "Kumbh Sans, sans-serif";
     };
-  }, [selectedFont]);
+  }, [font]);
 
   return (
     <div className="wrapper">
@@ -113,8 +116,7 @@ function App() {
           className={`tab_pomodoro ${currMode === "pomodoro" ? "active" : ""}`}
           onClick={() => handleMode("pomodoro")}
           style={{
-            backgroundColor:
-              currMode === "pomodoro" ? colorMapping[selectedColor] : "",
+            backgroundColor: currMode === "pomodoro" ? colorMapping[color] : "",
             color: currMode === "pomodoro" ? "black" : "",
           }}
         >
@@ -124,8 +126,7 @@ function App() {
           className={`tab_sb ${currMode === "sb" ? "active" : ""}`}
           onClick={() => handleMode("sb")}
           style={{
-            backgroundColor:
-              currMode === "sb" ? colorMapping[selectedColor] : "",
+            backgroundColor: currMode === "sb" ? colorMapping[color] : "",
             color: currMode === "sb" ? "black" : "",
           }}
         >
@@ -135,8 +136,7 @@ function App() {
           className={`tab_lb ${currMode === "lb" ? "active" : ""}`}
           onClick={() => handleMode("lb")}
           style={{
-            backgroundColor:
-              currMode === "lb" ? colorMapping[selectedColor] : "",
+            backgroundColor: currMode === "lb" ? colorMapping[color] : "",
             color: currMode === "lb" ? "black" : "",
           }}
         >
@@ -148,7 +148,7 @@ function App() {
           <div
             className="progress"
             style={{
-              borderColor: colorMapping[selectedColor],
+              borderColor: colorMapping[color],
             }}
           >
             <div className="progress_text">
@@ -177,6 +177,7 @@ function App() {
           progress={progress}
           setProgress={setProgress}
           timer={timer}
+          color={color}
         />
       </div>
 
@@ -218,6 +219,10 @@ function App() {
           setLBsetting={setLBsetting}
           totalSeconds={totalSeconds}
           setTotalSeconds={setTotalSeconds}
+          color={color}
+          setColor={setColor}
+          font={font}
+          setFont={setFont}
         />
       )}
     </div>

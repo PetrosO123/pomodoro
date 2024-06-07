@@ -1,7 +1,14 @@
 import "./Progress.css";
 import React, { useState, useEffect } from "react";
 
-function Progress({ timeLeft, totalSeconds, progress, setProgress, timer }) {
+function Progress({
+  timeLeft,
+  totalSeconds,
+  progress,
+  setProgress,
+  timer,
+  color,
+}) {
   // Start from 100%
 
   useEffect(() => {

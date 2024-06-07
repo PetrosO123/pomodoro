@@ -152,7 +152,10 @@ function App() {
             }}
           >
             <div className="progress_text">
-              <div className="time">
+              <div
+                className="time"
+                style={font === 3 ? { fontWeight: 400 } : { fontWeight: 700 }}
+              >
                 {`${Math.floor(timeLeft / 60)
                   .toString()
                   .padStart(2, "0")}:${(timeLeft % 60)

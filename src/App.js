@@ -220,6 +220,8 @@ function App() {
           setColor={setColor}
           font={font}
           setFont={setFont}
+          progress={progress}
+          setProgress={setProgress}
         />
       )}
     </div>
